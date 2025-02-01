@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+
+</head>
+
+<body>
+
+    <form id="library_box">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" id="title" required placeholder="Title">
+        </div>
+        <div class="form-group">
+            <label for="author">Author</label>
+            <input type="text" id="author" required placeholder="Author">
+        </div>
+        <div class="form-group">
+            <label for="pages">Pages</label>
+            <input type="text" id="pages" required placeholder="Pages">
+        </div>
+        <div class="form-group check-box">
+            <label for="pages">Read</label>
+            <input type="checkbox" id="read">
+        </div>
+        <div class="form-group">
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+
+    <table id="LibraryDatabase">
+        <th>Title</th>
+        <th>Author</th>
+        <th>Pages</th>
+        <th>Status</th>
+    </table>
+    <script>
+        class Book {
+            constructor(title, author, pages, read) {
+                this.title = title;
+                this.author = author;
+                this.pages = pages;
+                this.read = read;
+            }
+
+            info() {
+                return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`;
+            }
+        }
+
+        const myLibrary = [];
+
+        function addBookToLibrary(title, author, pages, read) {
+            const book = new Book(title, author, pages, read);
+            myLibrary.push(book);
+            addRowToTable(book, myLibrary.length - 1);
+        }
+
+        function addRowToTable(book, index) {
+            const table = document.getElementById("LibraryDatabase");
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                    <td>${book.title}</td>
+                    <td>${book.author}</td>
+                    <td>${book.pages}</td>
+                    <td class="read">${book.read ? "Read" : "Not Read Yet"}</td>
+                    <td><button class="remove_book">Remove Book</button></td>
+                    <td><button class="toggle_read">Toggle Read</button></td>`;
+
+            row.querySelector(".remove_book").addEventListener('click', () => {
+                row.remove();
+                myLibrary.splice(index, 1);
+            });
+
+            row.querySelector(".toggle_read").addEventListener('click', (event) => {
+                read = !read;
+                row.querySelector(".read").innerHTML = `${book.read ? "Read" : "Not Read Yet"}`;
+            });
+
+            table.appendChild(row);
+        }
+
+        const library_box = document.getElementById("library_box");
+
+        library_box.addEventListener('submit', (event) => {
+            event.preventDefault();
+            const title = library_box.querySelector("#title");
+            const author = library_box.querySelector("#author");
+            const pages = library_box.querySelector("#pages");
+            const read = library_box.querySelector("#read");
+
+            addBookToLibrary(title.value, author.value, pages.value, read.checked);
+            library_box.reset();
+        });
+
+    </script>
+    <style>
+        #library_box {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            font-family: 'Arial', sans-serif;
+        }
+
+        #library_box h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-size: 16px;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 8px;
+        }
+
+        input[type="text"],
+        input[type="checkbox"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-sizing: border-box;
+            margin-top: 8px;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0066cc;
+            outline: none;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-top: 10px;
+        }
+
+        input[type="text"]:focus,
+        input[type="checkbox"]:focus {
+            outline: none;
+        }
+
+        .check-box {
+            display: flex;
+            gap: 10px;
+        }
+
+        .check-box label,
+        .check-box input {
+            margin: 0;
+            padding: 0;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #005bb5;
+        }
+
+        @media screen and (max-width: 480px) {
+            #library_box {
+                padding: 15px;
+            }
+
+            .form-group {
+                margin-bottom: 15px;
+            }
+        }
+
+        table {
+            border-collapse: collapse;
+            margin: auto;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+        }
+
+        table th tr {
+            background-color: #009879;
+            color: #ffffff;
+            text-align: left;
+        }
+
+        table th,
+        table td {
+            padding: 12px 15px;
+        }
+
+        .styled-table tr {
+            border-bottom: 1px solid #dddddd;
+        }
+
+        table tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+        }
+
+        table tr:last-of-type {
+            border-bottom: 2px solid #009879;
+        }
+
+        table button {
+            padding: 8px;
+            font-size: 14px;
+            background-color: #0066cc;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        table button:hover {
+            background-color: #005bb5;
+        }
+    </style>
+</body>
+
+</html>
