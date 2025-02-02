@@ -88,23 +88,22 @@ class Game {
 
 function renderForm() {
     const formDiv = document.getElementById('form-div');
-    const form = formDiv.createElement('form');
+    const form = document.createElement('form');
     form.innerHTML = `
-    <form id="input-form">
-        <h2>Tic Tac Toe</h2>
-        <div class="form-group">
-            <label for="player1">Player 1</label>
-            <input type="text" id="player1" required placeholder="Enter Player 1 Name">
-        </div>
-        <div class="form-group">
-            <label for="player2">Player 2</label>
-            <input type="text" id="player2" required placeholder="Enter Player 2 Name">
-        </div>
-        <div class="form-group">
-            <button type="submit">Start Game</button>
-        </div>
-    </form>
-    `
+    <h2>Tic Tac Toe</h2>
+    <div class="form-group">
+        <label for="player1">Player 1</label>
+        <input type="text" id="player1" required placeholder="Enter Player 1 Name">
+    </div>
+    <div class="form-group">
+        <label for="player2">Player 2</label>
+        <input type="text" id="player2" required placeholder="Enter Player 2 Name">
+    </div>
+    <div class="form-group">
+        <button type="submit">Start Game</button>
+    </div>
+    `;
+    formDiv.appendChild(form);
     form.onsubmit = (e) => {
         e.preventDefault();
         const player1 = document.getElementById('player1').value;
