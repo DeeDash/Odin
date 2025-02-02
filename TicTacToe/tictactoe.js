@@ -31,10 +31,12 @@ class Game {
     constructor(name1, name2) {
         this.player1 = new Player(name1, 0);
         this.player2 = new Player(name2, 1);
-        this.turn = 0;
+        this.board;
     }
     startGame() {
         this.board = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
+        console.clear()
+        this.turn = 0;
         this.showBoard();
     }
 
@@ -48,23 +50,42 @@ class Game {
         );
     }
     getInput(index) {
-        if (this.board[index] == this.player1.symbol || this.board[index] == this.player2.symbol) {
+        if (this.board[index - 1] == this.player1.symbol || this.board[index - 1] == this.player2.symbol) {
             alert("Invalid Move");
-            this.getInput(player, index);
+            this.showBoard();
         } else {
-            const player = this.turn === 0 ? this.player1 : this.player2;
+            const player = this.turn == 0 ? this.player1 : this.player2;
             this.board[index - 1] = player.symbol;
+            this.turn = (this.turn + 1) % 2;
             this.showBoard();
             this.checkWin();
-            this.turn = (this.turn + 1) % 2;
         }
     }
     checkWin() {
-        let win = false, draw = false;
-        let result;
-        let player;
-        if (win) this.restartGame(result, player);
-        if (draw) this.restartGame(result);
+        let winner;
+        for (let i = 0; i < 3; ++i) {
+            if (this.board[i * 3] === this.board[i * 3 + 1] && this.board[i * 3 + 1] === this.board[i * 3 + 2]) {
+                // row 
+                winner = [this.player1, this.player2].find(player => player.symbol === this.board[i * 3]);
+                this.restartGame("win", winner);
+            } else if (this.board[i] === this.board[i + 3] && this.board[i + 3] === this.board[i + 6]) {
+                // column
+                winner = [this.player1, this.player2].find(player => player.symbol === this.board[i]);
+                this.restartGame("win", winner);
+            }
+        }
+        // diagonal 
+        if (this.board[0] === this.board[4] && this.board[4] === this.board[8] ||
+            this.board[2] === this.board[4] && this.board[4] === this.board[6]
+        ) {
+            winner = [this.player1, this.player2].find(player => player.symbol === this.board[4]);
+            this.restartGame("win", winner);
+        }
+
+        // draw
+        if (this.board.every(cell => cell === "X" || cell === "O")) {
+            this.restartGame("draw");
+        }
     }
     restartGame(result, player = null) {
         let userInput;
