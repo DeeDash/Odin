@@ -12,6 +12,9 @@
  * can check for win after move 5, no need to check after every turn
  */
 
+/* problems - 
+ * can call restart game from console to cheat
+ */
 
 /* console version */
 
@@ -29,8 +32,6 @@ class Game {
         this.player1 = new Player(name1, 0);
         this.player2 = new Player(name2, 1);
         this.turn = 0;
-        this.gameOver = false;
-        this.startGame();
     }
     startGame() {
         this.board = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
@@ -59,8 +60,24 @@ class Game {
         }
     }
     checkWin() {
+        let win = false, draw = false;
+        let result;
+        let player;
+        if (win) this.restartGame(result, player);
+        if (draw) this.restartGame(result);
+    }
+    restartGame(result, player = null) {
+        let userInput;
+        if (result == "win") {
+            userInput = prompt(`${player.name} wins! Restart?`)
+        } else {
+            userInput = prompt(`Draw. Restart?`)
+        }
 
+        if (userInput === 'y') this.startGame();
+        else window.close();
     }
 }
 
 const game = new Game("Alice", "Bob");
+game.startGame();
