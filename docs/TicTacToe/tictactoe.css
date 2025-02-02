@@ -22,13 +22,13 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     font-family: 'Arial', sans-serif;
+    color: white;
 }
 
 #form-container h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
-    color: #333;
 }
 
 .form-group {
@@ -39,7 +39,6 @@ label {
     display: block;
     font-size: 16px;
     font-weight: 600;
-    color: #333;
     margin-bottom: 8px;
 }
 
@@ -51,6 +50,7 @@ input[type="text"] {
     border-radius: 6px;
     box-sizing: border-box;
     margin-top: 8px;
+    background-color: unset;
 }
 
 input[type="text"]:focus {
