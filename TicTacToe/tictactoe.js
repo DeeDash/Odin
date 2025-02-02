@@ -29,7 +29,7 @@ class Game {
         gameBoard.innerHTML = "";
         for (let i = 0; i < 9; ++i) {
             const button = document.createElement('button');
-            button.innerHTML = ` `;
+            button.innerHTML = " ";
 
             button.addEventListener('click', () => {
                 this.getInput(i);
@@ -91,7 +91,7 @@ class Game {
 }
 
 function renderForm() {
-    const formDiv = document.getElementById('form-div');
+    const formDiv = document.getElementById('form-container');
     const form = document.createElement('form');
     form.innerHTML = `
     <h2>Tic Tac Toe</h2>

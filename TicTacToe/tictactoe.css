@@ -1,4 +1,4 @@
-#input-form {
+#form-container {
     max-width: 400px;
     margin: 50px auto;
     padding: 20px;
@@ -8,7 +8,7 @@
     font-family: 'Arial', sans-serif;
 }
 
-#input-form h2 {
+#form-container h2 {
     text-align: center;
     margin-bottom: 20px;
     font-size: 24px;
@@ -73,8 +73,28 @@ button[type="submit"]:hover {
     background-color: #005bb5;
 }
 
+#game-board {
+    max-width: 400px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px;
+
+}
+
+#game-board button,
+#game-board button[disabled] {
+    padding: 20px;
+    font-size: 60px;
+    background-color: black;
+    color: white;
+    aspect-ratio: 1/1;
+}
+
 @media screen and (max-width: 480px) {
-    #input-form {
+    #form-container {
         padding: 15px;
     }
 
