@@ -19,16 +19,20 @@ class Player {
     constructor(name, turn) {
         this.name = name;
         this.turn = turn;
-        if (turn == 1) this.symbol = "X";
-        else if (turn == 2) this.symbol = "O";
+        if (turn == 0) this.symbol = "X";
+        else if (turn == 1) this.symbol = "O";
     }
 }
 
 class Game {
     constructor(name1, name2) {
-        this.player1 = new Player(name1, 1);
-        this.player2 = new Player(name2, 2);
-
+        this.player1 = new Player(name1, 0);
+        this.player2 = new Player(name2, 1);
+        this.turn = 0;
+        this.gameOver = false;
+        this.startGame();
+    }
+    startGame() {
         this.board = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
         this.showBoard();
     }
@@ -42,4 +46,21 @@ class Game {
             `${this.board[6]} | ${this.board[7]} | ${this.board[8]}\n`
         );
     }
+    getInput(index) {
+        if (this.board[index] == this.player1.symbol || this.board[index] == this.player2.symbol) {
+            alert("Invalid Move");
+            this.getInput(player, index);
+        } else {
+            const player = this.turn === 0 ? this.player1 : this.player2;
+            this.board[index - 1] = player.symbol;
+            this.showBoard();
+            this.checkWin();
+            this.turn = (this.turn + 1) % 2;
+        }
+    }
+    checkWin() {
+
+    }
 }
+
+const game = new Game("Alice", "Bob");
