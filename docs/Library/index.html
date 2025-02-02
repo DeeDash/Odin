@@ -77,7 +77,7 @@
             });
 
             row.querySelector(".toggle_read").addEventListener('click', (event) => {
-                read = !read;
+                book.read = !book.read;
                 row.querySelector(".read").innerHTML = `${book.read ? "Read" : "Not Read Yet"}`;
             });
 
