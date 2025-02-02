@@ -2,8 +2,6 @@
  * can call restart game from console to cheat
  */
 
-/* console version */
-
 class Player {
     constructor(name, turn) {
         this.name = name;
@@ -20,31 +18,37 @@ class Game {
         this.board;
     }
     startGame() {
-        this.board = Array.from({ length: 9 }, (_, i) => (i + 1).toString());
-        console.clear()
+        this.board = Array.from({ length: 9 }, (_, i) => i);
         this.turn = 0;
         this.showBoard();
+
     }
 
     showBoard() {
-        console.log(
-            `${this.board[0]} | ${this.board[1]} | ${this.board[2]}\n` +
-            `---------\n` +
-            `${this.board[3]} | ${this.board[4]} | ${this.board[5]}\n` +
-            `---------\n` +
-            `${this.board[6]} | ${this.board[7]} | ${this.board[8]}\n`
-        );
+        const gameBoard = document.getElementById('game-board');
+        gameBoard.innerHTML = "";
+        for (let i = 0; i < 9; ++i) {
+            const button = document.createElement('button');
+            button.innerHTML = ` `;
+
+            button.addEventListener('click', () => {
+                this.getInput(i);
+                button.innerHTML = this.board[i];
+                button.disabled = true;
+                setTimeout(() => this.checkWin(), 10);
+            });
+
+            gameBoard.appendChild(button);
+        }
+
     }
     getInput(index) {
-        if (this.board[index - 1] == this.player1.symbol || this.board[index - 1] == this.player2.symbol) {
+        if (this.board[index] == this.player1.symbol || this.board[index] == this.player2.symbol) {
             alert("Invalid Move");
-            this.showBoard();
         } else {
             const player = this.turn == 0 ? this.player1 : this.player2;
-            this.board[index - 1] = player.symbol;
+            this.board[index] = player.symbol;
             this.turn = (this.turn + 1) % 2;
-            this.showBoard();
-            this.checkWin();
         }
     }
     checkWin() {
@@ -108,7 +112,8 @@ function renderForm() {
         e.preventDefault();
         const player1 = document.getElementById('player1').value;
         const player2 = document.getElementById('player2').value;
-        game = new Game(player1, player2);
+        const game = new Game(player1, player2);
+        console.log(game);
         game.startGame();
     }
 }
