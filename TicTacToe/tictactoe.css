@@ -1,3 +1,16 @@
+.control-button {
+    display: block;
+    margin: 15px auto;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #0066cc;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
 #form-container {
     max-width: 400px;
     margin: 50px auto;
@@ -81,16 +94,27 @@ button[type="submit"]:hover {
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
     gap: 10px;
-
 }
 
-#game-board button,
-#game-board button[disabled] {
+#game-controls {
+    max-width: 400px;
+    margin: auto;
+    font-family: 'Arial', sans-serif;
+    text-align: center;
+    padding: 20px;
+}
+
+#game-board .marker,
+#game-board .marker[disabled] {
     padding: 20px;
     font-size: 60px;
     background-color: black;
     color: white;
     aspect-ratio: 1/1;
+}
+
+#win-controls {
+    display: flex;
 }
 
 @media screen and (max-width: 480px) {
