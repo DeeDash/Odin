@@ -31,6 +31,10 @@ function addEventListeners() {
     };
 
     Object.entries(pages).forEach(([id, pageFunction]) => {
-        document.getElementById(id)?.addEventListener('click', () => pageFunction());
+        document.getElementById(id)?.addEventListener('click', () => {
+            setTimeout(() => {
+                pageFunction();
+            }, 500)
+        });
     });
 }
