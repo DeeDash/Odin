@@ -1,0 +1,148 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    ul {
+        display: flex;
+        list-style: none;
+
+        li {
+            margin-right: 20px;
+
+            &:last-child {
+                margin-right: 0;
+            }
+
+            a {
+                color: #fff;
+                text-decoration: none;
+                font-size: 18px;
+
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
+
+main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px;
+}
+
+#hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 40px;
+
+    h1 {
+        font-size: 48px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 24px;
+        margin-bottom: 20px;
+    }
+
+    button {
+        background-color: #333;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-size: 18px;
+
+        &:hover {
+            cursor: pointer;
+            background-color: #fff;
+            color: #333;
+        }
+    }
+}
+
+#about {
+    margin-bottom: 40px;
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.5;
+    }
+}
+
+#menu {
+    margin-bottom: 40px;
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+}
+
+#contact {
+    margin-bottom: 40px;
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 20px;
+    }
+
+    form {
+        label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px;
+        }
+    }
+}
+
+#contact form input,
+#contact form textarea {
+    font-size: 18px;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    margin-bottom: 20px;
+    width: 100%;
+}
