@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Wallpoet&display=swap');
+@import "tailwindcss";
+
+@theme {
+    --font-st-mono: "Share Tech Mono", "monospace","sans-serif";
+    --font-wallpoet: "Wallpoet", "monospace", "sans-serif";
+}
+body {
+    background-color: #dfdfdf;
+}
+
+@layer utilities {
+  @keyframes fast-pulse {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+
+  .animate-fast-pulse {
+    animation: fast-pulse 0.5s ease-in-out infinite;
+  }
+}

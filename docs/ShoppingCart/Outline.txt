@@ -1,0 +1,29 @@
+Nav Bar -> Contains Links to Homepage, PLP, Cart
+
+Home Page -> 
+    Lorem Ipsum
+    Shop Button which redirects to PLP
+
+PLP ->
+    Product Cards ->
+        Image
+        Product Name
+        Price
+        Quantity Selector
+        Add to Cart Button
+
+Cart ->
+    Product Cards
+        Image
+        Product Name
+        Price
+        Quantity Adjust
+        Remove
+    Checkout Button ->
+        Total Price
+        Total Products
+
+
+Use Fake Store API for everything
+Loading Animations
+Tailwind
